@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface SearchBarProps {
   placeholder: string;
@@ -8,31 +9,35 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
   return (
     <View style={styles.container}>
-      <TextInput 
-        style={styles.input} 
+      <Icon name="magnify" size={30} color="#fff" />
+      <TextInput
+        style={styles.input}
         placeholder={placeholder}
-        placeholderTextColor='white'
+        placeholderTextColor="white"
       />
+      <Icon  name="microphone" size={30} color="#fff"/>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
+    width:'90%',
+    height:40,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    marginVertical: 10,
-    backgroundColor: '#343435',
+    margin:20,
+    backgroundColor: '#45474D',
   },
   input: {
-    flex: 1,
     height: 40,
     fontSize: 18,
     color: 'white',
+    marginTop:5,
+    marginLeft:3,
+    marginRight:90,
   },
 });
 
