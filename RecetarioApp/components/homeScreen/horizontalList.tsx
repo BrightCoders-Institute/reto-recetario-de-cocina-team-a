@@ -20,7 +20,8 @@ export default function HorizontalList(props:horizontalList): JSX.Element {
                                   padding={props.padding}
                                   imgW={props.size}
                                   width={props.width}
-                                  title={receta.item.nombre} />}
+                                  title={receta.item.nombre}
+                                  img={receta.item.imagen} />}
         // keyExtractor={item => item.id}
       />
     </View>

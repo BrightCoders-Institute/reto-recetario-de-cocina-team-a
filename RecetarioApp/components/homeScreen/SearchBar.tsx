@@ -15,7 +15,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ placeholder }) => {
         placeholder={placeholder}
         placeholderTextColor="white"
       />
-      <Icon  name="microphone" size={30} color="#fff"/>
+      <View style={styles.icon}>
+        <Icon  name="microphone" size={30} color="#fff"/>
+      </View>
     </View>
   );
 };
@@ -37,7 +39,10 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop:5,
     marginLeft:3,
-    marginRight:90,
+    marginRight:80,
+  },
+  icon: {
+    marginRight:'10%',
   },
 });
 
