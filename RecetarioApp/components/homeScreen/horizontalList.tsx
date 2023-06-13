@@ -8,6 +8,7 @@ type horizontalList= {
   height: number,
   width: number,
   padding:string,
+  type:string,
 }
 
 export default function HorizontalList(props:horizontalList): JSX.Element {
@@ -17,10 +18,12 @@ export default function HorizontalList(props:horizontalList): JSX.Element {
         data={recetas.recetas}
         horizontal
         renderItem={(receta) => <RecipeItem
+                                  type={props.type}
                                   padding={props.padding}
                                   imgW={props.size}
                                   width={props.width}
                                   title={receta.item.nombre}
+                                  id={receta.item.id}
                                   img={receta.item.imagen} />}
         // keyExtractor={item => item.id}
       />

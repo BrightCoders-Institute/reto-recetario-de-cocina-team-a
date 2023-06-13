@@ -8,16 +8,20 @@ type props = {
     imgW: number,
     padding:string,
     img:string,
+    id: number,
+    type:string
 };
 export default function RecipeItem(props: props): JSX.Element {
     const [visible, setVisible] = useState(false);
+    const onClose = ()=>{
+        setVisible(false)
+    }
     return (
         <Pressable
         onPress={() => {
             setVisible(!visible);
         }}>
-            <Modal1 isVisible={visible}
-                    />
+            <Modal1 isVisible={visible} onClose={onClose} id = {props.id} type={props.type}/>
             <View style={[styles.container, {width:props.width,paddingHorizontal:props.padding} ]}>
                 <View style={styles.imgContainer}>
                     <Image
@@ -39,6 +43,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         width: 120,
         height: 160,
+        marginRight:10
     },
     imgContainer: {
     },

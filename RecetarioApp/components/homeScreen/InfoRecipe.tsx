@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View, Image, ImageBackground} from 'react-native';
-import { useState } from 'react';
 
 const InfoRecipe = () => {
   const [modalVisible, setModalVisible] = useState(false);
