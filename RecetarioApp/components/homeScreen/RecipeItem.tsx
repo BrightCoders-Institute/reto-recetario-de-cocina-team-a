@@ -3,13 +3,11 @@ import { Image, StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import Modal1 from './Modal';
 type props = {
-    title: string,
-    width: number,
-    imgW: number,
-    padding:string,
-    img:string,
-    id: number,
-    type:string
+    width: number;
+    imgW: number;
+    padding:string;
+    type:string;
+    recipe: Recipe
 };
 export default function RecipeItem(props: props): JSX.Element {
     const [visible, setVisible] = useState(false);
@@ -21,17 +19,17 @@ export default function RecipeItem(props: props): JSX.Element {
         onPress={() => {
             setVisible(!visible);
         }}>
-            <Modal1 isVisible={visible} onClose={onClose} id = {props.id} type={props.type}/>
+            <Modal1 isVisible={visible} onClose={onClose} recipe={props.recipe} type={props.type}/>
             <View style={[styles.container, {width:props.width,paddingHorizontal:props.padding} ]}>
                 <View style={styles.imgContainer}>
                     <Image
                         style={[styles.imgRecipe,{width:props.imgW}]}
                         source={{
-                            uri: props.img,
+                            uri: props.recipe.imagen,
                         }}
                     />
                 </View>
-                <Text style={styles.text}>{props.title}</Text>
+                <Text style={styles.text}>{props.recipe.nombre}</Text>
         </View >
         </Pressable>
     );

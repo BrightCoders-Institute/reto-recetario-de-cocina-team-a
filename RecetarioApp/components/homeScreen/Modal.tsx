@@ -1,73 +1,74 @@
-import { StyleSheet, Text, View, Modal,ImageBackground, Pressable } from 'react-native';
-import { useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  ImageBackground,
+  Pressable,
+  SafeAreaView,
+} from 'react-native';
+import {useState} from 'react';
 import React from 'react';
 import recetas from '../../data/Recetas.json';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; //Importacion de Iconos
+import IngredientsList from '../infoScreen/IngredientsList';
+import { Ingredient } from '../infoScreen/IngredientItem';
 
-type modal={
-  isVisible:boolean,
-  onClose: () => void,
-  id:number,
-  type:string
-}
+type modal = {
+  isVisible: boolean;
+  onClose: () => void;
+  recipe: Recipe;
+  type: string;
+};
 
-export default function Modal1( modal:modal ): JSX.Element {
-  const {isVisible, onClose, id, type} = modal;
-  const recetaEncontrada = recetas.recetas.find((receta)=> receta.id === id);
+export default function Modal1(modal: modal): JSX.Element {
+  const {isVisible, onClose, recipe, type} = modal;
   const [active, isActive] = useState(modal.isVisible);
   return (
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isVisible}
-       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style= {styles.containerImg}>
+    <Modal animationType="slide" transparent={true} visible={isVisible}>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <View style={styles.containerImg}>
             <ImageBackground
-             source={{uri:recetaEncontrada?.imagen}}
-             resizeMode="cover"
-             style= {styles.recipeImg}
-            >
-            </ImageBackground>  
-            <Pressable
-              style={[styles.button]}
-              onPress={onClose}>
-              <Icon name="close" size={30} style={styles.textStyle} color="#fff" />
-              
-            </Pressable>
-            
-            <Text style={styles.recetaTitle}>
-              {type }
-              {'\n'}
-              {recetaEncontrada?.nombre}
-            </Text>
+              source={{uri: recipe.imagen}}
+              resizeMode="cover"
+              style={styles.recipeImg}></ImageBackground>
+
+            <View style={styles.iconsContainer}>
+              <Pressable onPress={onClose}>
+                <Icon
+                  name="close"
+                  size={45}
+                  style={styles.closeIcon}
+                  color="#FFFFFF"
+                />
+              </Pressable>
+
+              <Icon
+                style={styles.shareIcon}
+                name="export-variant"
+                size={40}
+                color="#FFFFFF"
+              />
+              <Icon
+                style={styles.heartIcon}
+                name="heart-outline"
+                size={40}
+                color="#FFFFFF"
+              />
+            </View>
+            <Text style={styles.recetaType}>{type}</Text>
+            <Text style={styles.recetaTitle}>{recipe.nombre}</Text>
             <Text style={styles.servings}>
-              Ingredients {'\n'}for {recetaEncontrada?.personas} servings
+              Ingredients {'\n'}for {recipe.personas} servings
             </Text>
-            <View style={styles.containerIngredients}>
-              {
-                recetaEncontrada?.ingredientes.map((ingrediente, index)=>(
-                  <View style={styles.ingredientList}>
-                    <Text key={index} style={styles.textIngredients}>
-                      {ingrediente.nombre}
-                    </Text>
-                    <Text style={styles.textIngredients}>
-                      {ingrediente.cantidad}
-                    </Text>
-                  </View>
-                ))
-              }
-              <Text style={styles.textIngredients}>
-                
-              </Text>
-            </View>
-            </View>
+            <SafeAreaView style={styles.containerIngredients}>
+              <IngredientsList ingredients={recipe.ingredientes}/>
+            </SafeAreaView>
           </View>
         </View>
-      </Modal>
- 
+      </View>
+    </Modal>
   );
 }
 
@@ -92,12 +93,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#333333',
   },
   button: {
-    position:'absolute',
     borderRadius: 20,
-    height:'10%',
-    width:'10%',
-    left:'10%',
-    top:'20%'
+    height: '10%',
+    width: '10%',
   },
   textStyle: {
     color: 'white',
@@ -110,18 +108,12 @@ const styles = StyleSheet.create({
   },
   containerImg: {
     height: 370,
-    width: '100%'
+    width: '100%',
   },
   recipeImg: {
     width: '100%',
     height: '100%',
-    opacity:.4
-  },
-  textIngredients: {
-    color: 'white',
-    fontSize: 18,
-    marginTop: 2,
-    padding: 10,
+    opacity: 0.4,
   },
   servings: {
     color: 'white',
@@ -129,23 +121,37 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 25,
   },
-  containerIngredients:{
+  containerIngredients: {
     paddingTop: 15,
     paddingLeft: 20,
     width: '90%',
   },
-  recetaTitle:{
-    position:'absolute',
-    left:'5%',
-    top:'80%',
-    fontSize:30,
-    color:'#FFF',
-    fontWeight:'bold' 
+  recetaType: {
+    position: 'absolute',
+    left: '5%',
+    top: '80%',
+    fontSize: 18,
+    color: '#FFF',
   },
-  ingredientList: {
+  recetaTitle: {
+    position: 'absolute',
+    left: '5%',
+    top: '87%',
+    fontSize: 25,
+    color: '#FFF',
+  },
+  iconsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: '#525252',
+    position: 'absolute',
+    marginTop: 25,
   },
-})
+  closeIcon: {
+    marginLeft: 20,
+  },
+  shareIcon: {
+    marginLeft: 180,
+  },
+  heartIcon: {
+    marginLeft: 30,
+  },
+});

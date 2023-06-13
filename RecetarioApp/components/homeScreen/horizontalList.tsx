@@ -3,29 +3,26 @@ import recetas from '../../data/Recetas.json';
 import { View, FlatList, StyleSheet } from 'react-native';
 import RecipeItem from './RecipeItem';
 
-type horizontalList= {
+type horizontalList = {
   size: number
   height: number,
   width: number,
-  padding:string,
-  type:string,
+  padding: string,
+  type: string,
 }
 
-export default function HorizontalList(props:horizontalList): JSX.Element {
+export default function HorizontalList(props: horizontalList): JSX.Element {
   return (
-    <View style={{ height: props.height}}>
-        <FlatList
+    <View style={{ height: props.height }}>
+      <FlatList
         data={recetas.recetas}
         horizontal
         renderItem={(receta) => <RecipeItem
-                                  type={props.type}
-                                  padding={props.padding}
-                                  imgW={props.size}
-                                  width={props.width}
-                                  title={receta.item.nombre}
-                                  id={receta.item.id}
-                                  img={receta.item.imagen} />}
-        // keyExtractor={item => item.id}
+          type={props.type}
+          padding={props.padding}
+          imgW={props.size}
+          width={props.width}
+          recipe={receta.item} />}
       />
     </View>
   );
