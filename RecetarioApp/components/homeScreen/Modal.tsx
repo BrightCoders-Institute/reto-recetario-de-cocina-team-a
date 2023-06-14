@@ -5,14 +5,11 @@ import {
   Modal,
   ImageBackground,
   Pressable,
-  SafeAreaView,
 } from 'react-native';
-import {useState} from 'react';
 import React from 'react';
-import recetas from '../../data/Recetas.json';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; //Importacion de Iconos
 import IngredientsList from '../infoScreen/IngredientsList';
-import { Ingredient } from '../infoScreen/IngredientItem';
+
 
 type modal = {
   isVisible: boolean;
@@ -23,17 +20,15 @@ type modal = {
 
 export default function Modal1(modal: modal): JSX.Element {
   const {isVisible, onClose, recipe, type} = modal;
-  const [active, isActive] = useState(modal.isVisible);
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
+    <Modal animationType="slide" transparent={true} visible={isVisible} >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <View style={styles.containerImg}>
             <ImageBackground
               source={{uri: recipe.imagen}}
               resizeMode="cover"
-              style={styles.recipeImg}></ImageBackground>
-
+              style={styles.recipeImg}/>
             <View style={styles.iconsContainer}>
               <Pressable onPress={onClose}>
                 <Icon
@@ -43,7 +38,6 @@ export default function Modal1(modal: modal): JSX.Element {
                   color="#FFFFFF"
                 />
               </Pressable>
-
               <Icon
                 style={styles.shareIcon}
                 name="export-variant"
@@ -59,12 +53,12 @@ export default function Modal1(modal: modal): JSX.Element {
             </View>
             <Text style={styles.recetaType}>{type}</Text>
             <Text style={styles.recetaTitle}>{recipe.nombre}</Text>
+          </View>
             <Text style={styles.servings}>
               Ingredients {'\n'}for {recipe.personas} servings
             </Text>
-            <SafeAreaView style={styles.containerIngredients}>
-              <IngredientsList ingredients={recipe.ingredientes}/>
-            </SafeAreaView>
+          <View style={styles.containerIngredients}>
+            <IngredientsList ingredients={recipe.ingredientes}/>
           </View>
         </View>
       </View>
@@ -85,7 +79,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     flexDirection: 'column',
-    alignItems: 'center',
     shadowColor: '#000',
     shadowRadius: 4,
     borderWidth: 1,
@@ -116,15 +109,18 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   servings: {
+    textAlign: 'left',
     color: 'white',
     fontSize: 20,
     marginTop: 10,
     marginLeft: 25,
   },
   containerIngredients: {
+    flex:1,
     paddingTop: 15,
     paddingLeft: 20,
     width: '90%',
+    height:'100%',
   },
   recetaType: {
     position: 'absolute',

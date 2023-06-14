@@ -12,8 +12,8 @@ type props = {
 export default function RecipeItem(props: props): JSX.Element {
     const [visible, setVisible] = useState(false);
     const onClose = ()=>{
-        setVisible(false)
-    }
+        setVisible(false);
+    };
     return (
         <Pressable
         onPress={() => {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         width: 120,
         height: 160,
-        marginRight:10
+        marginRight:10,
     },
     imgContainer: {
     },

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, SafeAreaView, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet} from 'react-native';
 import React from 'react';
 import IngredientItem, { Ingredient } from './IngredientItem';
 
@@ -7,19 +7,23 @@ type ingredientListProps = {
 };
 export default function IngredientsList({ingredients}: ingredientListProps): JSX.Element {
     const renderItem = ({ item }: { item: Ingredient }) => {
-        return <IngredientItem ingredient={item} />
-    }
+        return <IngredientItem ingredient={item} />;
+    };
 
     return (
-        <View style={styles.containerIngredients}>
-            <FlatList data={ingredients} renderItem={renderItem} style={styles.listIngredients} horizontal={false}/>
-        </View>
+        <FlatList
+          data={ingredients}
+          renderItem={renderItem}
+          style={styles.listIngredients}
+            />
     );
 }
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
     containerIngredients: {
-        height: 300,
+        flex:1,
     },
-    listIngredients: {    }
-})
+    listIngredients: {
+       flex:1,
+       },
+});

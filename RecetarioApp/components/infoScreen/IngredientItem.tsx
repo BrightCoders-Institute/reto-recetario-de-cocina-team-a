@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import {Text, StyleSheet, View } from 'react-native';
+import React from 'react';
 
 type ingredientProps = {
     ingredient: Ingredient;
@@ -11,15 +11,15 @@ export type Ingredient = {
 }
 export default function IngredientItem({ ingredient }: ingredientProps): JSX.Element {
     return (
-        <TouchableOpacity style={styles.ingredientList}>
+        <View style={styles.ingredientList}>
             <Text style={styles.textIngredients}>
                 {ingredient.nombre}
             </Text>
             <Text style={styles.textIngredients}>
                 {ingredient.cantidad}
             </Text>
-        </TouchableOpacity>
-    )
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

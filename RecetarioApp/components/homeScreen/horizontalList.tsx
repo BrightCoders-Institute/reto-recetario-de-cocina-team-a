@@ -1,6 +1,6 @@
 import React from 'react';
 import recetas from '../../data/Recetas.json';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList } from 'react-native';
 import RecipeItem from './RecipeItem';
 
 type horizontalList = {
