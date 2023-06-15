@@ -1,9 +1,0 @@
-2 pantallas 
-3 componentes {
-  1 menu
-  2 carrueles
-}
-
-
-notas:
-uso del modal 
