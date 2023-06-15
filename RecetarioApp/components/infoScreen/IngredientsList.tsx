@@ -12,10 +12,10 @@ export default function IngredientsList({ingredients}: ingredientListProps): JSX
 
     return (
         <FlatList
-          data={ingredients}
-          renderItem={renderItem}
-          style={styles.listIngredients}
-            />
+        data={ingredients}
+        renderItem={renderItem}
+        style={styles.listIngredients}
+        />
     );
 }
 
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
         flex:1,
     },
     listIngredients: {
-       flex:1,
-       },
+        flex:1,
+    },
 });

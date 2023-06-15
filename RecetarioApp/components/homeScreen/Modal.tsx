@@ -10,7 +10,6 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; //Importacion de Iconos
 import IngredientsList from '../infoScreen/IngredientsList';
 
-
 type modal = {
   isVisible: boolean;
   onClose: () => void;
@@ -23,7 +22,7 @@ export default function Modal1(modal: modal): JSX.Element {
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible} >
       <View style={styles.centeredView}>
-        <View style={styles.modalView}>
+        <View style={styles.modalView} testID="modal-container">
           <View style={styles.containerImg}>
             <ImageBackground
               source={{uri: recipe.imagen}}
